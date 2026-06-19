@@ -1,0 +1,12 @@
+{
+  "name": "GarderieHub",
+  "description": "Portail de gestion de garderies québécoises avec fonctionnalités de waitlist, de renouvellement de documents crypté et de facturation Stripe bilingue.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

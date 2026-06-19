@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;650;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-slate-800 bg-slate-50 antialiased selection:bg-indigo-100 selection:text-indigo-900;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight font-extrabold;
+  }
+}
+
+/* Custom Sleek Interface Aesthetics */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+.sleek-card-hover {
+  @apply transition-all duration-300 hover:translate-y-[-2px] hover:shadow-md hover:border-slate-300/80;
+}
+
+.sleek-glass-effect {
+  @apply bg-white/70 backdrop-blur-md border border-white/25;
+}
+
