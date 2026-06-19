@@ -76,7 +76,7 @@ export default function App() {
       </main>
 
       {/* Dynamic Footer */}
-      <Footer />
+      <Footer setCurrentView={setCurrentView} />
 
       {/* Credential Overlay Admin panel */}
       <AdminPanel

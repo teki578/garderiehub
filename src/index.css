@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;650;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,14 +6,25 @@
 
 @layer base {
   body {
-    @apply font-sans text-slate-800 bg-slate-50 antialiased selection:bg-indigo-100 selection:text-indigo-900;
+    @apply font-sans text-slate-800 bg-slate-50 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-amber-100 selection:text-amber-900;
   }
   h1, h2, h3, h4 {
     @apply font-display tracking-tight font-extrabold;
   }
+
+  /* Smooth dark mode transitions */
+  * {
+    @apply transition-colors duration-150;
+  }
+  /* Don't transition transforms/animations */
+  .animate-fade-in, .animate-fade-in-up, .animate-float, .animate-pulse, .animate-spin {
+    transition: none !important;
+  }
 }
 
-/* Custom Sleek Interface Aesthetics */
+/* ===========================
+   PREMIUM SCROLLBAR
+=========================== */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -22,18 +33,185 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
+  background: #fbbf24;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #cbd5e1;
+  background: #f59e0b;
 }
 
+/* ===========================
+   KEYFRAME ANIMATIONS
+=========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(251, 191, 36, 0.2); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===========================
+   ANIMATION CLASSES
+=========================== */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* Staggered children */
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.3s; }
+
+/* ===========================
+   UTILITY CLASSES
+=========================== */
 .sleek-card-hover {
-  @apply transition-all duration-300 hover:translate-y-[-2px] hover:shadow-md hover:border-slate-300/80;
+  @apply transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg hover:border-amber-300/60;
 }
 
 .sleek-glass-effect {
   @apply bg-white/70 backdrop-blur-md border border-white/25;
 }
 
+.premium-gradient-text {
+  background: linear-gradient(135deg, #f59e0b, #d97706, #92400e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-grid-bg {
+  background-image: 
+    linear-gradient(rgba(251, 191, 36, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 191, 36, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .hero-grid-bg {
+  background-image: 
+    linear-gradient(rgba(251, 191, 36, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 191, 36, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .shimmer {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Glow effect on cards */
+.card-glow:hover {
+  box-shadow: 0 0 30px -5px rgba(251, 191, 36, 0.15);
+}
+
+/* Badge pulse */
+.live-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pulse 2s ease-in-out infinite;
+  margin-right: 4px;
+}
+
+/* Focus ring style */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
